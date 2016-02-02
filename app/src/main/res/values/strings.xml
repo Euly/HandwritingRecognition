@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HandwritingRecognition</string>
+    <string name="app_title">Handwriting Recognition</string>
+    <string name="action_settings">Settings</string>
+</resources>
