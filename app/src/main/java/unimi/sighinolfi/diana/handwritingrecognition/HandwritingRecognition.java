@@ -42,7 +42,7 @@ public class HandwritingRecognition extends AppCompatActivity implements Gesture
 
         GestureOverlayView overlay = (GestureOverlayView) findViewById(R.id.gestureOverlayView);
         overlay.setDrawingCacheEnabled(true);
-        //Setto il listner associandolo a questa classe.
+        //Setto il listener associandolo a questa classe.
         overlay.addOnGesturePerformedListener(this);
         lib=new CropLibrary();
     }
@@ -88,12 +88,33 @@ public class HandwritingRecognition extends AppCompatActivity implements Gesture
             os.close();
             FileInputStream is=new FileInputStream(f);
             try{
+                //immagine bianco e nero
                 Bitmap inputBitmap = BitmapFactory.decodeStream(is);
-                System.out.println(inputBitmap.getHeight() + " " +inputBitmap.getWidth());
+                System.out.println(inputBitmap.getHeight() + " " + inputBitmap.getWidth());
                 BitmapConvertor convertor = new BitmapConvertor(this);
-                convertor.convertBitmap(inputBitmap, "my_monochrome_image");
+                convertor.convertBitmap(inputBitmap, "my_monochrome_image", new Runnable() {
+                    @Override
+                    public void run() {
+                        Bitmap bmpbw = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + File.separator + "my_monochrome_image.bmp");
+                        //crop dell'immagine
+                        bmpbw = lib.extractCharImageToRecognize(bmpbw);
+                        File f = new File(Environment.getExternalStorageDirectory() + File.separator + "my_monochrome_imageCrop.jpg");
+                        if (f.exists())
+                            f.delete();
+                        try {
+                            f.createNewFile();
+                            FileOutputStream osm = new FileOutputStream(f);
+                            bmpbw.compress(Bitmap.CompressFormat.JPEG, 90, osm);
+                            osm.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
             }
             catch (Exception e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();

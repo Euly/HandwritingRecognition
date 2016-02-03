@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\Diana\\Documents\\Workspace\\HandwritingRecognition\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_handwriting_recognition.xml",
         "source": "C:\\Users\\Diana\\Documents\\Workspace\\HandwritingRecognition\\app\\src\\main\\res\\menu\\menu_handwriting_recognition.xml"
+    },
+    {
+        "merged": "C:\\Users\\Antonio\\Handwriting\\HandwritingRecognition\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_handwriting_recognition.xml",
+        "source": "C:\\Users\\Antonio\\Handwriting\\HandwritingRecognition\\app\\src\\main\\res\\menu\\menu_handwriting_recognition.xml"
     }
 ]

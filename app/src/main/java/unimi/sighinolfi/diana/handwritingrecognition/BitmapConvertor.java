@@ -23,6 +23,7 @@ public class BitmapConvertor{
 	private int mWidth, mHeight;
 	private String mStatus;
 	private String mFileName;
+	private Runnable callback;
 	
 	
 	public BitmapConvertor(Context context) {
@@ -36,11 +37,12 @@ public class BitmapConvertor{
  * @param fileName : Save-As filename
  * @return :  Returns a String. Success when the file is saved on memory card or error.
  */
-    public String convertBitmap(Bitmap inputBitmap, String fileName){
+    public String convertBitmap(Bitmap inputBitmap, String fileName,Runnable callback){
 		
     	mWidth = inputBitmap.getWidth();
     	mHeight = inputBitmap.getHeight();
     	mFileName = fileName;
+		this.callback=callback;
     	mDataWidth=((mWidth+31)/32)*4*8;
     	mDataArray = new byte[(mDataWidth * mHeight)];
     	mRawBitmapData = new byte[(mDataWidth * mHeight) / 8];
@@ -132,6 +134,7 @@ public class BitmapConvertor{
 			// TODO Auto-generated method stub
 			mPd.dismiss();
             Toast.makeText(mContext, "Monochrome bitmap created successfully. Please check in sdcard", Toast.LENGTH_LONG).show();
+			callback.run();
 		}
 
 
