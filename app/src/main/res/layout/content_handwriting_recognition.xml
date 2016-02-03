@@ -40,5 +40,7 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
+        android:gestureColor="#ff0000"
+        android:gestureStrokeType="multiple"
         android:uncertainGestureColor="#000000"/>
 </RelativeLayout>
